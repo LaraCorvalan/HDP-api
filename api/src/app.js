@@ -16,13 +16,15 @@ const cors=require("cors");
 
 const app = http.createServer(server);
 
-const io = new SocketServer(app, {
-  cors: {
-    origin: "https://hdp-game.vercel.app/",
-  },
-});
+const io = new SocketServer(app
+//   , {
+//   cors: {
+//     origin: "https://hdp-game.vercel.app/",
+//   },
+// }
+);
 const rooms = {};
-app.listen(process.env.PORT || 3002)
+// app.listen(process.env.PORT || 3002)
 
 // se conecta primero cuando inicia la pagina
 // una vez en el login tiene dos opciones crear sala -->se setea el usuario(nombre, imagen )
