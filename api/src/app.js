@@ -9,6 +9,7 @@ const blackCards = require("./data/blackCards");
 const whiteCards = require("./data/whiteCards");
 const { User, Room } = require("./db.js");
 const SocketServer = Server;
+const {CORS_URL} = process.env
 
 const server = express();
 const cors=require("cors");
@@ -17,7 +18,7 @@ const app = http.createServer(server);
 
 const io = new SocketServer(app, {
   cors: {
-    origin: "*",
+    origin: "https://hdp-game.vercel.app/",
   },
 });
 const rooms = {};
@@ -471,7 +472,7 @@ server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
 server.use(morgan("dev"));
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", CORS_URL); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
